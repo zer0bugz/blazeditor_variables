@@ -128,3 +128,11 @@ Or using `@ref` parameter with `TextEditor` property.
     async Task Clear() => await textEditor.SetContent(string.Empty);
 }
 ```
+### External plugins
+You can setup your own external plugins by setting `BlazeditorOption.ExternalPlugins`
+
+### Variable.js
+The serverside sample also features the `variable.js` plugin.
+This can be configured using:
+ - `VariableMapper` - allows specifying the available variables in a key-value-pair format
+ - `VariablePrefix` and `VariableSuffix` - they do exactly what they say.
