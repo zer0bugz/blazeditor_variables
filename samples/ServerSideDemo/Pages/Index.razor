@@ -1,0 +1,88 @@
+﻿@page "/"
+
+@using Blazeditor.TinyMCE
+
+@foreach (var item in textEditorOption.VariableMapper)
+{
+    <button onclick="tinymce.editors.demo.plugins.variable.addVariable('@item.Key')">@item.Value</button>
+}
+
+<div>
+    <TextEditor Id="demo" @ref="@TextEditor" BlazeditorOption="textEditorOption" OnChangeCallBack="@OnChange">
+        <EditorContent>
+            @((MarkupString)initialText)
+        </EditorContent>
+    </TextEditor>
+
+    <br />
+
+    <button @onclick="GetRawContent">Get RAW content</button>
+    <button @onclick="GetHtmlContent">Get HTML content</button>
+    <button @onclick="ClearContent">Clear</button>
+    
+    <hr />
+
+    <p>
+        @data
+    </p>
+</div>
+
+@code
+{
+
+    const string initialText = "<p>This example shows you the blazor with TinyMCE.Let's go boissss here is my {{account_id}}</p>"; 
+    private TextEditor TextEditor;
+    private TextEditor InlineTextEditor;
+    private string data = string.Empty;
+    private string onchangedData = string.Empty;
+    private string inlineData = string.Empty;
+
+    private BlazeditorOption textEditorOption = new BlazeditorOption
+    {
+        Toolbar = "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | link | code",
+        ShowMenuBar = true,
+        PasteAsText = true,
+        PasteDataImage = true,
+        ExternalPlugins = new()
+        {
+            { "variable", "https://localhost:44378/variable.js" }
+        },
+        VariableMapper = new()
+        {
+            //first: weird key, second: nicey display text
+            { "account_id", "Account ID" },
+            { "email", "E-mail address" },
+            { "some_fake_app_id", "Application Id"},
+            { "Html Voettekst Nespr Be B2C", "Html Voettekst Nespr Be B2C"}
+        },
+            VariablePrefix = "«",
+            VariableSuffix = "»"
+    };
+
+    private BlazeditorOption inlineOption = new BlazeditorOption
+    {
+        InlineMode = true,
+        Toolbar = "bold italic | alignleft aligncenter alignright alignjustify | link"
+    };
+
+    public async Task GetRawContent()
+    {
+        data = await TextEditor.GetRawContent();
+    }
+
+    public async Task GetHtmlContent()
+    {
+        data = await TextEditor.GetHtmlContent();
+    }
+
+    public async Task ClearContent() => await TextEditor.SetContent(string.Empty);
+
+    async Task OnChange(string returnValue)
+    {
+        await Task.Run(() =>
+        {
+            onchangedData = returnValue;
+        });
+    }
+}
+

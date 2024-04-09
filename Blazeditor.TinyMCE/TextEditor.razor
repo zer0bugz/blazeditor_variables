@@ -1,0 +1,8 @@
+﻿@if (BlazeditorOption.InlineMode)
+{
+    <div id="@Id" class="blazeditor">@EditorContent</div>
+}
+else
+{
+    <textarea id="@Id" class="blazeditor">@EditorContent</textarea>
+}

@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Authors>Nattapong Nunpan</Authors>
+    <Description>Rich text editor for Blazor applications - Uses TinyMCE</Description>
+    <RepositoryUrl>https://github.com/aixasz/Blazeditor</RepositoryUrl>
+    <PackageTags>Blazor TinyMCE Editor Text Component</PackageTags>
+    <NeutralLanguage>en</NeutralLanguage>
+    <PackageProjectUrl>https://github.com/aixasz/Blazeditor</PackageProjectUrl>
+    <Copyright>Copyright 2022 (c) Nattapong Nunpan. All rights reserved.</Copyright>
+    <Company>Blazeditor</Company>
+    <IsPackable>true</IsPackable>
+    <PackageLicenseExpression></PackageLicenseExpression>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <AssemblyVersion>1.2.2</AssemblyVersion>
+    <FileVersion>1.2.2</FileVersion>
+    <PackageReleaseNotes>Blazeditor for .NET 6</PackageReleaseNotes>
+    <Version>1.2.2</Version>
+    <PackageVersion>1.2.2</PackageVersion>
+    <PackageIcon>icon.png</PackageIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="images\icon.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.10" />
+    <PackageReference Include="Microsoft.JSInterop" Version="6.0.10" />
+  </ItemGroup>
+
+</Project>
